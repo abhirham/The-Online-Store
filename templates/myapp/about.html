@@ -1,0 +1,17 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    <div class="panel panel-info indexpanel1">
+        <div class="panel-heading"><h1>This is an Online Store APP</h1></div>
+        <div class="panel-body">
+             Canadian retail company which sells a wide range of electronics, Furniture, Appliances,Home Decor and leisure. Some stores also sell toys and food products. The company's head office is in Toronto, Ontario. The retailer is known for its  money, a loyalty program first introduced in 1958, where customers are provided with coupons resembling paper money worth 0.4% of their purchase that can be used in subsequent purchases as scrip at Our Online stores.
+        </div>
+        <div class="panel-footer">
+            {% if not request.COOKIES.about_visits %}
+                This is your first visit.
+            {% else %}
+                You have visited this page {{ request.COOKIES.about_visits|add:'1' }} times.
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

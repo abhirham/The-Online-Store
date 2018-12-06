@@ -1,0 +1,46 @@
+{% extends 'myapp/base.html' %}
+{% load staticfiles %}
+
+{% block myhdg %}
+    Hello {{ request.user.username  | upper}}
+{% endblock %}
+
+{% block body_block %}
+    <div class="jumpbthing" >
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="content">
+                    <h1 class="storetitle">The Online Store</h1>
+                    <hr>
+                    <h3>The One Place To Shop</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% if msg %}
+        <div class="alert alert-success" role="alert"><h4>{{ msg }}</h4></div>
+    {% endif %}
+    {% if cat_list%}
+        <div class="panel panel-info indexpanel">
+        <!-- Default panel contents -->
+            <div class="panel-heading"><h3 class="panel-title">List of Categories</h3></div>
+            <!-- List group -->
+            <ul class="list-group">
+                {% for cat  in cat_list%}
+                    <li class="list-group-item"><a href="{% url 'myapp:detail' cat.id %}">{{ cat.name}} </a></li>
+                {% endfor%}
+            </ul>
+            <div class="panel-footer">
+                {% ifnotequal request.session.last_login None %}
+                    <h4><b>Last Login: </b>{{ request.session.last_login }}</h4>
+                {% else %}
+                    <h4><b>Last Login: </b>Your last login was more than one hour ago</h4>
+                {% endifnotequal %}
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert"><strong>There are no available categories!</strong></div>
+    {% endif %}
+{% endblock %}
